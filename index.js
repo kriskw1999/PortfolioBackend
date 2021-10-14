@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const nodemailer = require("nodemailer");
+const cors = require("cors");
 
 const PORT = 8080;
 
@@ -17,6 +18,9 @@ let transporter = nodemailer.createTransport({
   });
 
   
+app.use(cors({
+    origin: 'http://localhost:3001/'
+}));
 
 // use the express-static middleware
 app.use(express.static("public"))
