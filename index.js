@@ -17,11 +17,6 @@ let transporter = nodemailer.createTransport({
     }
   });
 
-  
-app.use(cors({
-    origin: 'http://localhost:3001/'
-}));
-
 // use the express-static middleware
 app.use(express.static("public"))
 
