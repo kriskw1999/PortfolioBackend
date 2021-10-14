@@ -22,23 +22,25 @@ let transporter = nodemailer.createTransport({
 app.use(express.static("public"))
 
 // define the first route
-app.get("/:name/:mail/:message/", function (req, res) {
+app.get("/sendcontact/:name/:mail/:message/", function (req, res) {
 
     let mailOptions = {
-        from: req.params.mail,
+        from: "kriskw1999@gmail.com",
         to: "kriskw1999@gmail.com",
-        subject: "Portfolio contact",
+        subject: `Portfolio contact from ${req.params.mail}`,
         text: `${req.params.message}`
       };
 
     transporter.sendMail(mailOptions, function(err, data) {
         if (err) {
           console.log("Error " + err);
+          res.json({result: err});
         } else {
           console.log("Email sent successfully");
+          res.json({result: "success"});
         }
     });
-    res.send("<h1>Hello World!</h1>")
+    
 })
 
 // start the server listening for requests
