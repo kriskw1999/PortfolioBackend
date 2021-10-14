@@ -16,18 +16,21 @@ let transporter = nodemailer.createTransport({
     }
   });
 
-  let mailOptions = {
-    from: "kriskw1999@gmail.com",
-    to: "kriskw1999@gmail.com",
-    subject: 'Nodemailer Project',
-    text: 'Hi from your nodemailer project'
-  };
+  
 
 // use the express-static middleware
 app.use(express.static("public"))
 
 // define the first route
-app.get("/", function (req, res) {
+app.get("/:name/:mail/:message/", function (req, res) {
+
+    let mailOptions = {
+        from: "kriskw1999@gmail.com",
+        to: "kriskw1999@gmail.com",
+        subject: req.params.mail,
+        text: `Mail from ${req.params.name}: ${req.params.message}`
+      };
+
     transporter.sendMail(mailOptions, function(err, data) {
         if (err) {
           console.log("Error " + err);
