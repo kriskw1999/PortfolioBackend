@@ -25,10 +25,10 @@ app.use(express.static("public"))
 app.get("/:name/:mail/:message/", function (req, res) {
 
     let mailOptions = {
-        from: "kriskw1999@gmail.com",
+        from: req.params.mail,
         to: "kriskw1999@gmail.com",
-        subject: req.params.mail,
-        text: `Mail from ${req.params.name}: ${req.params.message}`
+        subject: "Portfolio contact",
+        text: `${req.params.message}`
       };
 
     transporter.sendMail(mailOptions, function(err, data) {
