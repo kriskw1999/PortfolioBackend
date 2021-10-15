@@ -5,6 +5,10 @@ const cors = require("cors");
 
 const PORT = 8080;
 
+var corsOptions = {
+  origin: 'https://peaceful-murdock-1353da.netlify.app/'
+}
+
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -21,7 +25,7 @@ let transporter = nodemailer.createTransport({
 app.use(express.static("public"))
 
 // define the first route
-app.get("/sendcontact/:name/:mail/:message/", function (req, res) {
+app.get("/sendcontact/:name/:mail/:message/", cors(corsOptions) , function (req, res) {
 
     let mailOptions = {
         from: "kriskw1999@gmail.com",
