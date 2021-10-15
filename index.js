@@ -6,7 +6,7 @@ const cors = require("cors");
 const PORT = 8080;
 
 var corsOptions = {
-  origin: 'https://peaceful-murdock-1353da.netlify.app'
+  origin: 'https://www.krzysztof-witkowski.com'
 }
 
 let transporter = nodemailer.createTransport({
